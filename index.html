@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quick Structural Construction Estimator (Fajardo Method)</title>
+    <title>Kwentahin Mo! - Construction Estimator (Fajardo Method)</title>
     
     <!-- PWA & Mobile Web App Meta Tags -->
-    <meta name="theme-color" content="#0284c7">
+    <meta name="theme-color" content="#064e3b">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Kwentahin Mo!">
     
-    <!-- Embedded Web Application Manifest for Chrome App Installation -->
-    <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIlF1aWNrIFN0cnVjdHVyYWwgQ29uc3RydWN0aW9uIEVzdGltYXRvciIsCiAgInNob3J0X25hbWUiOiAiRXN0aW1hdG9yIiwKICAic3RhcnRfdXJsIjogIi4vIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMGYxNzJhIiwKICAidGhlbWVfY29sb3IiOiAiIzAyODRjNyIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzIwMS8yMDE2MjMucG5nIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciCiAgICB9CiAgXQp9">
+    <!-- Embedded Web Application Manifest with Dark Green Theme & Construction Hard Hat Icon -->
+    <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIkt3ZW50YWhpbiBNbyEiLAogICJzaG9ydF9uYW1lIjogIkt3ZW50YWhpbiBNbyIsCiAgInN0YXJ0X3VybCI6ICIuLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzA2NGUzYiIsCiAgInRoZW1lX2NvbG9yIjogIiMwNjRlM2IiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJodHRwczovL2Nkbi1pY29ucy1wbmcuZmxhdGljb24uY29tLzUxMi8zMDE0LzMwMTQyNTcucG5nIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciCiAgICB9CiAgXQp9">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -31,30 +31,30 @@
 <body class="h-full text-slate-800 flex flex-col min-h-screen">
 
     <!-- Header / Navbar -->
-    <header class="bg-slate-900 text-white sticky top-0 z-30 shadow-md">
+    <header class="bg-emerald-950 text-white sticky top-0 z-30 shadow-md border-b border-emerald-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex items-center space-x-3">
-                    <div class="bg-sky-500 text-white p-2.5 rounded-xl shadow-md">
-                        <i class="fa-solid fa-helmet-safety text-xl"></i>
+                    <div class="bg-emerald-600 text-white p-2.5 rounded-xl shadow-md">
+                        <i class="fa-solid fa-hard-hat text-xl"></i>
                     </div>
                     <div>
-                        <h1 class="text-lg font-bold leading-tight">Kwentahin Mo!</h1>
-                        <p class="text-xs text-sky-400 font-medium">based on Max Fajardo</p>
+                        <h1 class="text-lg font-bold leading-tight tracking-wide">Kwentahin Mo!</h1>
+                        <p class="text-xs text-emerald-400 font-medium">based on Max Fajardo</p>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-3">
-                    <!-- PWA Install Button (Triggered automatically when installable) -->
-                    <button id="pwaInstallBtn" onclick="installPWA()" class="hidden bg-sky-500 hover:bg-sky-600 text-white font-semibold px-3 py-1.5 rounded-xl text-xs flex items-center gap-1.5 transition">
+                    <!-- PWA Install Button -->
+                    <button id="pwaInstallBtn" onclick="installPWA()" class="hidden bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-3 py-1.5 rounded-xl text-xs flex items-center gap-1.5 transition shadow-sm">
                         <i class="fa-solid fa-download"></i>
                         <span>Install App</span>
                     </button>
-                    <button onclick="toggleReferenceModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium px-3 py-1.5 rounded-xl transition text-xs flex items-center gap-1.5 border border-slate-700">
-                        <i class="fa-solid fa-book-bookmark text-sky-400"></i>
+                    <button onclick="toggleReferenceModal()" class="bg-emerald-900 hover:bg-emerald-800 text-emerald-200 font-medium px-3 py-1.5 rounded-xl transition text-xs flex items-center gap-1.5 border border-emerald-800">
+                        <i class="fa-solid fa-book-bookmark text-emerald-400"></i>
                         <span class="hidden sm:inline">Fajardo Tables</span>
                     </button>
-                    <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium p-2 rounded-xl transition text-xs border border-slate-700" title="Print Estimate">
+                    <button onclick="window.print()" class="bg-emerald-900 hover:bg-emerald-800 text-emerald-200 font-medium p-2 rounded-xl transition text-xs border border-emerald-800" title="Print Estimate">
                         <i class="fa-solid fa-print"></i>
                     </button>
                 </div>
@@ -68,12 +68,12 @@
         <!-- Global Settings Panel -->
         <section class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
             <h2 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center gap-2">
-                <i class="fa-solid fa-sliders text-sky-600"></i> Project Assumptions & Contingency
+                <i class="fa-solid fa-sliders text-emerald-600"></i> Project Assumptions & Contingency
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div>
                     <label class="block text-xs font-semibold text-slate-600 mb-1">Material Waste Allowance</label>
-                    <select id="wasteFactor" onchange="calculateAll()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold bg-white focus:ring-2 focus:ring-sky-500">
+                    <select id="wasteFactor" onchange="calculateAll()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold bg-white focus:ring-2 focus:ring-emerald-500">
                         <option value="1.00">0% (Exact Quantity)</option>
                         <option value="1.05" selected>5% (Standard Contingency)</option>
                         <option value="1.10">10% (High Wastage/Site Loss)</option>
@@ -81,17 +81,17 @@
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-600 mb-1">Cement Bag Weight</label>
-                    <select id="cementBagType" onchange="calculateAll()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold bg-white focus:ring-2 focus:ring-sky-500">
+                    <select id="cementBagType" onchange="calculateAll()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold bg-white focus:ring-2 focus:ring-emerald-500">
                         <option value="40" selected>40 kg Bag (Standard PH)</option>
                     </select>
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-600 mb-1">Cement Unit Cost (₱/bag)</label>
-                    <input type="number" id="costCement" value="240" oninput="calculateAll()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold focus:ring-2 focus:ring-sky-500">
+                    <input type="number" id="costCement" value="240" oninput="calculateAll()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold focus:ring-2 focus:ring-emerald-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-600 mb-1">CHB 4" Unit Cost (₱/pc)</label>
-                    <input type="number" id="costCHB4" value="13" oninput="calculateAll()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold focus:ring-2 focus:ring-sky-500">
+                    <input type="number" id="costCHB4" value="13" oninput="calculateAll()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold focus:ring-2 focus:ring-emerald-500">
                 </div>
             </div>
         </section>
@@ -114,7 +114,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-medium text-slate-600 mb-1">Total Wall Area (m²)</label>
-                            <input type="number" id="wallArea" placeholder="e.g. 85" value="0" step="0.1" oninput="calculateAll()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-medium focus:ring-2 focus:ring-sky-500">
+                            <input type="number" id="wallArea" placeholder="e.g. 85" value="0" step="0.1" oninput="calculateAll()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-medium focus:ring-2 focus:ring-emerald-500">
                         </div>
                         <div>
                             <label class="block text-xs font-medium text-slate-600 mb-1">CHB Thickness</label>
@@ -183,7 +183,7 @@
                 <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
                     <div class="flex justify-between items-center mb-4 pb-2 border-b border-slate-100">
                         <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
-                            <i class="fa-solid fa-columns text-sky-600"></i> 3. Columns
+                            <i class="fa-solid fa-columns text-emerald-700"></i> 3. Columns
                         </h3>
                     </div>
 
@@ -219,7 +219,7 @@
                     <!-- Beams -->
                     <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
                         <h3 class="font-bold text-slate-800 text-sm mb-3 flex items-center gap-2">
-                            <i class="fa-solid fa-ruler-horizontal text-purple-600"></i> 4. Structural Beams
+                            <i class="fa-solid fa-ruler-horizontal text-emerald-600"></i> 4. Structural Beams
                         </h3>
                         <div class="space-y-2.5">
                             <div>
@@ -249,7 +249,7 @@
                     <!-- Slabs -->
                     <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
                         <h3 class="font-bold text-slate-800 text-sm mb-3 flex items-center gap-2">
-                            <i class="fa-solid fa-vector-square text-rose-500"></i> 5. Concrete Slab
+                            <i class="fa-solid fa-vector-square text-emerald-800"></i> 5. Concrete Slab
                         </h3>
                         <div class="space-y-2.5">
                             <div>
@@ -275,22 +275,22 @@
 
             <!-- RIGHT COLUMN: Live Consolidate Bill of Materials (BOM) -->
             <div class="lg:col-span-1">
-                <div class="bg-slate-900 text-white rounded-2xl p-5 sticky top-20 shadow-xl space-y-5 border border-slate-800">
+                <div class="bg-emerald-950 text-white rounded-2xl p-5 sticky top-20 shadow-xl space-y-5 border border-emerald-900">
                     <div>
-                        <h3 class="text-base font-extrabold flex items-center gap-2 text-sky-400">
-                            <i class="fa-solid fa-calculator"></i> Consolidated Bill of Materials
+                        <h3 class="text-base font-extrabold flex items-center gap-2 text-emerald-400">
+                            <i class="fa-solid fa-calculator"></i> Consolidated BOM
                         </h3>
-                        <p class="text-[11px] text-slate-400">Calculated strictly per Fajardo Constants</p>
+                        <p class="text-[11px] text-emerald-300/70">Calculated strictly per Fajardo Constants</p>
                     </div>
 
                     <!-- Results List -->
-                    <div class="space-y-3 divide-y divide-slate-800 text-xs">
+                    <div class="space-y-3 divide-y divide-emerald-900 text-xs">
                         
                         <!-- CHBs -->
                         <div class="pt-2 flex justify-between items-center">
                             <div>
                                 <p class="font-bold text-slate-200">Concrete Hollow Blocks (CHB)</p>
-                                <p id="chbSubtext" class="text-[10px] text-slate-400">12.5 pcs/m²</p>
+                                <p id="chbSubtext" class="text-[10px] text-emerald-400">12.5 pcs/m²</p>
                             </div>
                             <span id="resCHB" class="text-base font-extrabold text-amber-400">0 pcs</span>
                         </div>
@@ -299,16 +299,16 @@
                         <div class="pt-2 flex justify-between items-center">
                             <div>
                                 <p class="font-bold text-slate-200">Portland Cement (40kg)</p>
-                                <p class="text-[10px] text-slate-400">Concrete + Mortar + Plaster</p>
+                                <p class="text-[10px] text-emerald-400">Concrete + Mortar + Plaster</p>
                             </div>
-                            <span id="resCement" class="text-base font-extrabold text-sky-400">0 bags</span>
+                            <span id="resCement" class="text-base font-extrabold text-emerald-400">0 bags</span>
                         </div>
 
                         <!-- Sand -->
                         <div class="pt-2 flex justify-between items-center">
                             <div>
                                 <p class="font-bold text-slate-200">Sand (Fine Aggregate)</p>
-                                <p class="text-[10px] text-slate-400">Concrete + Mortar + Plaster</p>
+                                <p class="text-[10px] text-emerald-400">Concrete + Mortar + Plaster</p>
                             </div>
                             <span id="resSand" class="text-sm font-bold text-slate-300">0.00 m³</span>
                         </div>
@@ -317,30 +317,30 @@
                         <div class="pt-2 flex justify-between items-center">
                             <div>
                                 <p class="font-bold text-slate-200">Gravel (Coarse Aggregate)</p>
-                                <p class="text-[10px] text-slate-400">Concrete Components Only</p>
+                                <p class="text-[10px] text-emerald-400">Concrete Components Only</p>
                             </div>
                             <span id="resGravel" class="text-sm font-bold text-slate-300">0.00 m³</span>
                         </div>
 
                         <!-- Total Concrete Volume -->
-                        <div class="pt-2 flex justify-between items-center text-slate-400">
+                        <div class="pt-2 flex justify-between items-center text-emerald-300/80">
                             <span>Total Concrete Vol.</span>
                             <span id="resConcVol" class="font-semibold">0.00 m³</span>
                         </div>
                     </div>
 
                     <!-- Cost Breakdown -->
-                    <div class="bg-slate-800/80 rounded-xl p-4 border border-slate-700/80 space-y-2">
+                    <div class="bg-emerald-900/80 rounded-xl p-4 border border-emerald-800 space-y-2">
                         <div class="flex justify-between text-xs">
-                            <span class="text-slate-400">Est. Cement Cost:</span>
-                            <span id="costEstCement" class="font-semibold text-slate-200">₱0.00</span>
+                            <span class="text-emerald-200/80">Est. Cement Cost:</span>
+                            <span id="costEstCement" class="font-semibold text-slate-100">₱0.00</span>
                         </div>
                         <div class="flex justify-between text-xs">
-                            <span class="text-slate-400">Est. CHB Cost:</span>
-                            <span id="costEstCHB" class="font-semibold text-slate-200">₱0.00</span>
+                            <span class="text-emerald-200/80">Est. CHB Cost:</span>
+                            <span id="costEstCHB" class="font-semibold text-slate-100">₱0.00</span>
                         </div>
-                        <div class="border-t border-slate-700 pt-2 flex justify-between items-center">
-                            <span class="text-xs font-bold text-sky-300">Est. Base Cost:</span>
+                        <div class="border-t border-emerald-800 pt-2 flex justify-between items-center">
+                            <span class="text-xs font-bold text-emerald-300">Est. Base Cost:</span>
                             <span id="costEstTotal" class="text-lg font-black text-emerald-400">₱0.00</span>
                         </div>
                     </div>
@@ -356,14 +356,14 @@
         <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto m-4">
             <div class="flex justify-between items-center border-b pb-3">
                 <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-                    <i class="fa-solid fa-book-open text-sky-600"></i> Max B. Fajardo Jr. Reference Multipliers
+                    <i class="fa-solid fa-book-open text-emerald-600"></i> Max B. Fajardo Jr. Reference Multipliers
                 </h3>
                 <button onclick="toggleReferenceModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
             
             <div class="space-y-4 text-xs">
                 <div>
-                    <h4 class="font-bold text-sky-600 mb-1">1. Concrete Mix Proportions (Table 1-2 for 40kg Cement)</h4>
+                    <h4 class="font-bold text-emerald-700 mb-1">1. Concrete Mix Proportions (Table 1-2 for 40kg Cement)</h4>
                     <table class="w-full border-collapse border border-slate-200 text-left">
                         <thead class="bg-slate-50">
                             <tr>
@@ -384,7 +384,7 @@
                 </div>
 
                 <div>
-                    <h4 class="font-bold text-sky-600 mb-1">2. CHB Mortar & Cell Filler Multipliers (Per Block)</h4>
+                    <h4 class="font-bold text-emerald-700 mb-1">2. CHB Mortar & Cell Filler Multipliers (Per Block)</h4>
                     <p class="text-slate-600 mb-1">CHB Factor: <strong>12.5 blocks per m²</strong></p>
                     <ul class="list-disc pl-5 space-y-1 text-slate-600">
                         <li><strong>4" CHB Mortar & Filler:</strong> ~0.0522 bags cement/block, 0.0043 m³ sand/block</li>

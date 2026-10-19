@@ -68,30 +68,38 @@
         <!-- Global Settings Panel -->
         <section class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
             <h2 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center gap-2">
-                <i class="fa-solid fa-sliders text-emerald-600"></i> Project Assumptions & Contingency
+                <i class="fa-solid fa-sliders text-emerald-600"></i> Project Assumptions & Material Pricing
             </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
                 <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Material Waste Allowance</label>
-                    <select id="wasteFactor" onchange="calculateAll()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold bg-white focus:ring-2 focus:ring-emerald-500">
-                        <option value="1.00">0% (Exact Quantity)</option>
-                        <option value="1.05" selected>5% (Standard Contingency)</option>
-                        <option value="1.10">10% (High Wastage/Site Loss)</option>
+                    <label class="block text-[11px] font-semibold text-slate-600 mb-1">Waste Allowance</label>
+                    <select id="wasteFactor" onchange="calculateAll()" class="w-full px-2.5 py-2 rounded-xl border border-slate-200 text-xs font-semibold bg-white focus:ring-2 focus:ring-emerald-500">
+                        <option value="1.00">0% (Exact)</option>
+                        <option value="1.05" selected>5% (Standard)</option>
+                        <option value="1.10">10% (High Loss)</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Cement Bag Weight</label>
-                    <select id="cementBagType" onchange="calculateAll()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold bg-white focus:ring-2 focus:ring-emerald-500">
-                        <option value="40" selected>40 kg Bag (Standard PH)</option>
+                    <label class="block text-[11px] font-semibold text-slate-600 mb-1">Cement Bag</label>
+                    <select id="cementBagType" onchange="calculateAll()" class="w-full px-2.5 py-2 rounded-xl border border-slate-200 text-xs font-semibold bg-white focus:ring-2 focus:ring-emerald-500">
+                        <option value="40" selected>40 kg Bag</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Cement Unit Cost (₱/bag)</label>
-                    <input type="number" id="costCement" value="240" oninput="calculateAll()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold focus:ring-2 focus:ring-emerald-500">
+                    <label class="block text-[11px] font-semibold text-slate-600 mb-1">Cement (₱/bag)</label>
+                    <input type="number" id="costCement" value="240" oninput="calculateAll()" class="w-full px-2.5 py-2 rounded-xl border border-slate-200 text-xs font-semibold focus:ring-2 focus:ring-emerald-500">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">CHB 4" Unit Cost (₱/pc)</label>
-                    <input type="number" id="costCHB4" value="13" oninput="calculateAll()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold focus:ring-2 focus:ring-emerald-500">
+                    <label class="block text-[11px] font-semibold text-slate-600 mb-1">CHB 4" (₱/pc)</label>
+                    <input type="number" id="costCHB4" value="13" oninput="calculateAll()" class="w-full px-2.5 py-2 rounded-xl border border-slate-200 text-xs font-semibold focus:ring-2 focus:ring-emerald-500">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-600 mb-1">Sand (₱/m³)</label>
+                    <input type="number" id="costSand" value="1100" oninput="calculateAll()" class="w-full px-2.5 py-2 rounded-xl border border-slate-200 text-xs font-semibold focus:ring-2 focus:ring-emerald-500">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-600 mb-1">Gravel (₱/m³)</label>
+                    <input type="number" id="costGravel" value="1300" oninput="calculateAll()" class="w-full px-2.5 py-2 rounded-xl border border-slate-200 text-xs font-semibold focus:ring-2 focus:ring-emerald-500">
                 </div>
             </div>
         </section>
@@ -329,18 +337,26 @@
                         </div>
                     </div>
 
-                    <!-- Cost Breakdown -->
+                    <!-- Detailed Cost Breakdown -->
                     <div class="bg-emerald-900/80 rounded-xl p-4 border border-emerald-800 space-y-2">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-emerald-200/80">Est. CHB Cost:</span>
+                            <span id="costEstCHB" class="font-semibold text-slate-100">₱0.00</span>
+                        </div>
                         <div class="flex justify-between text-xs">
                             <span class="text-emerald-200/80">Est. Cement Cost:</span>
                             <span id="costEstCement" class="font-semibold text-slate-100">₱0.00</span>
                         </div>
                         <div class="flex justify-between text-xs">
-                            <span class="text-emerald-200/80">Est. CHB Cost:</span>
-                            <span id="costEstCHB" class="font-semibold text-slate-100">₱0.00</span>
+                            <span class="text-emerald-200/80">Est. Sand Cost:</span>
+                            <span id="costEstSand" class="font-semibold text-slate-100">₱0.00</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-emerald-200/80">Est. Gravel Cost:</span>
+                            <span id="costEstGravel" class="font-semibold text-slate-100">₱0.00</span>
                         </div>
                         <div class="border-t border-emerald-800 pt-2 flex justify-between items-center">
-                            <span class="text-xs font-bold text-emerald-300">Est. Base Cost:</span>
+                            <span class="text-xs font-bold text-emerald-300">Est. Total Material Cost:</span>
                             <span id="costEstTotal" class="text-lg font-black text-emerald-400">₱0.00</span>
                         </div>
                     </div>
@@ -514,12 +530,12 @@
                 (beamVol * FAJARDO_CONCRETE[beamMix].gravel) +
                 (slabVol * FAJARDO_CONCRETE[slabMix].gravel);
 
-            // TOTAL CONSOLIDATED
+            // TOTAL CONSOLIDATED QUANTITIES
             const totalCementBags = Math.ceil((concCementBags + masonryCement + plasterCement) * waste);
             const totalSandVol = (concSandVol + masonrySand + plasterSand) * waste;
             const totalGravelVol = concGravelVol * waste;
 
-            // UPDATE DOM UI
+            // UPDATE QUANTITIES IN DOM
             document.getElementById('resCHB').innerText = `${chbCount.toLocaleString()} pcs`;
             document.getElementById('chbSubtext').innerText = `${chbType}" CHB @ 12.5 pcs/m²`;
             document.getElementById('resCement').innerText = `${totalCementBags.toLocaleString()} bags`;
@@ -530,14 +546,22 @@
             // COST EVALUATION
             const priceCement = parseFloat(document.getElementById('costCement').value) || 0;
             const priceCHB = parseFloat(document.getElementById('costCHB4').value) || 0;
+            const priceSand = parseFloat(document.getElementById('costSand').value) || 0;
+            const priceGravel = parseFloat(document.getElementById('costGravel').value) || 0;
 
-            const costCement = totalCementBags * priceCement;
             const costCHB = chbCount * priceCHB;
-            const costTotal = costCement + costCHB;
+            const costCement = totalCementBags * priceCement;
+            const costSand = totalSandVol * priceSand;
+            const costGravel = totalGravelVol * priceGravel;
+            const costTotal = costCHB + costCement + costSand + costGravel;
 
-            document.getElementById('costEstCement').innerText = `₱${costCement.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-            document.getElementById('costEstCHB').innerText = `₱${costCHB.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-            document.getElementById('costEstTotal').innerText = `₱${costTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            const formatPHP = (amt) => `₱${amt.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+
+            document.getElementById('costEstCHB').innerText = formatPHP(costCHB);
+            document.getElementById('costEstCement').innerText = formatPHP(costCement);
+            document.getElementById('costEstSand').innerText = formatPHP(costSand);
+            document.getElementById('costEstGravel').innerText = formatPHP(costGravel);
+            document.getElementById('costEstTotal').innerText = formatPHP(costTotal);
         }
 
         // Register Service Worker for PWA

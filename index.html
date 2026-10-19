@@ -111,19 +111,38 @@
             <div class="lg:col-span-2 space-y-6">
 
                 <!-- 1. MASONRY WALLS -->
-                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
-                    <div class="flex justify-between items-center mb-4 pb-2 border-b border-slate-100">
+                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
+                    <div class="flex justify-between items-center pb-2 border-b border-slate-100">
                         <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
                             <i class="fa-solid fa-cubes text-amber-500"></i> 1. Concrete Hollow Block (CHB) Walls
                         </h3>
                         <span class="text-[11px] font-semibold bg-amber-50 text-amber-700 px-2 py-0.5 rounded-md">12.5 pcs/m² (Fajardo)</span>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Wall Dimensions & Calculation -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-slate-50 p-3.5 rounded-xl border border-slate-200/80">
                         <div>
-                            <label class="block text-xs font-medium text-slate-600 mb-1">Total Wall Area (m²)</label>
-                            <input type="number" id="wallArea" placeholder="e.g. 85" value="0" step="0.1" oninput="calculateAll()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-medium focus:ring-2 focus:ring-emerald-500">
+                            <label class="block text-[11px] font-medium text-slate-600 mb-1">Total Wall Length L (m)</label>
+                            <input type="number" id="wallLength" placeholder="e.g. 20" value="0" step="0.1" oninput="calculateAll()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-medium focus:ring-2 focus:ring-emerald-500 bg-white">
                         </div>
+                        <div>
+                            <label class="block text-[11px] font-medium text-slate-600 mb-1">Wall Height H (m)</label>
+                            <input type="number" id="wallHeight" placeholder="e.g. 3" value="0" step="0.1" oninput="calculateAll()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-medium focus:ring-2 focus:ring-emerald-500 bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-medium text-slate-600 mb-1">Deductions: Doors/Windows (m²)</label>
+                            <input type="number" id="wallDeductions" placeholder="e.g. 4.2" value="0" step="0.1" oninput="calculateAll()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-medium focus:ring-2 focus:ring-emerald-500 bg-white">
+                        </div>
+                    </div>
+
+                    <!-- Computed Net Area Readout -->
+                    <div class="flex justify-between items-center px-1 text-xs font-semibold text-slate-600">
+                        <span>Computed Area Summary:</span>
+                        <span class="text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200/60" id="netAreaDisplay">Gross: 0.00 m² | Net Wall Area: 0.00 m²</span>
+                    </div>
+
+                    <!-- Wall Options -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <div>
                             <label class="block text-xs font-medium text-slate-600 mb-1">CHB Thickness</label>
                             <select id="chbType" onchange="calculateAll()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-medium bg-white">
@@ -467,18 +486,26 @@
         function calculateAll() {
             const waste = parseFloat(document.getElementById('wasteFactor').value) || 1.0;
             
-            // 1. MASONRY
-            const wallArea = parseFloat(document.getElementById('wallArea').value) || 0;
+            // 1. MASONRY (W/ COMPUTED WALL AREA & DEDUCTIONS)
+            const wLength = parseFloat(document.getElementById('wallLength').value) || 0;
+            const wHeight = parseFloat(document.getElementById('wallHeight').value) || 0;
+            const wDeductions = parseFloat(document.getElementById('wallDeductions').value) || 0;
+
+            const grossArea = wLength * wHeight;
+            const netWallArea = Math.max(0, grossArea - wDeductions);
+
+            document.getElementById('netAreaDisplay').innerText = `Gross: ${grossArea.toFixed(2)} m² | Net Wall Area: ${netWallArea.toFixed(2)} m²`;
+
             const chbType = document.getElementById('chbType').value;
             const mortarMix = document.getElementById('mortarMix').value;
             const plasterSides = parseInt(document.getElementById('plasterSides').value);
 
-            const chbCount = Math.ceil(wallArea * 12.5 * waste);
-            const masonryCement = wallArea * 12.5 * FAJARDO_CHB[chbType].cementPerBlock;
-            const masonrySand = wallArea * 12.5 * FAJARDO_CHB[chbType].sandPerBlock;
+            const chbCount = Math.ceil(netWallArea * 12.5 * waste);
+            const masonryCement = netWallArea * 12.5 * FAJARDO_CHB[chbType].cementPerBlock;
+            const masonrySand = netWallArea * 12.5 * FAJARDO_CHB[chbType].sandPerBlock;
 
-            const plasterCement = wallArea * plasterSides * FAJARDO_PLASTER[mortarMix].cementPerSqM;
-            const plasterSand = wallArea * plasterSides * FAJARDO_PLASTER[mortarMix].sandPerSqM;
+            const plasterCement = netWallArea * plasterSides * FAJARDO_PLASTER[mortarMix].cementPerSqM;
+            const plasterSand = netWallArea * plasterSides * FAJARDO_PLASTER[mortarMix].sandPerSqM;
 
             // 2. FOOTINGS
             const fQty = parseFloat(document.getElementById('footingQty').value) || 0;
